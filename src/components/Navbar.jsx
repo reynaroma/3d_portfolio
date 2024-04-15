@@ -8,7 +8,7 @@ import { logo, menu, close } from '../assets';
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
-
+                                                
   return (
     <nav
       className={`${styles.paddingX} w-full flex
@@ -26,10 +26,10 @@ const Navbar = () => {
         >
           <img src={logo} alt={logo} className='w-9 h-9 object-contain' />
           <p className='text-white text-[18px] font-bold cursor-pointer flex'>
-            Reyna May&nbsp;
-            <span className='sm:block hidden'>Roma</span></p>
+            Reyna&nbsp;
+            <span className='sm:block hidden'>| Portfolio</span></p>
         </Link>
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
+        <ul className='lis t-none hidden sm:flex flex-row gap-10'>
           {navLinks.map((link) => (
             <li
               key={link.id}
