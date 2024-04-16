@@ -50,6 +50,8 @@ const ComputersCanvas = () => {
   // OrbitControls is a component
   // that allows us to move the camera around the scene left and right
 
+  // we use the useState hook to create a state variable
+  // to check if the user is on a mobile device
   const [ismObile, setIsMobile] = useState(false);
 
   // we use the useEffect hook to check if the user is on a mobile device
@@ -67,7 +69,7 @@ const ComputersCanvas = () => {
       setIsMobile(event.matches);
     }
 
-    // Add the callback function as an event listener for changes to the media query
+    // Add the event listener to the media query
     mediaQuery.addEventListener('change', handleMediaQueryChange);
 
     // Remove the event listener when the component is unmounted
