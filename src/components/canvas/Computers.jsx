@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unknown-property */
 
 /* eslint-disable no-unused-vars */
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
 
 import CanvasLoader from '../Loader';
 
-const Computers = () => {
+const Computers = ({ ismObile }) => {
 
   // Load the computer model from the gltf file using useGLTF hook from drei package
   const computer = useGLTF('./desktop_pc/scene.gltf');
@@ -37,8 +37,8 @@ const Computers = () => {
       />
       <primitive
         object={computer.scene}
-        scale={0.75}
-        position={[0, -3.25, -1.5]}
+        scale={ismObile ? 0.7 : 0.75}
+        position={ismObile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -49,6 +49,33 @@ const Computers = () => {
 const ComputersCanvas = () => {
   // OrbitControls is a component
   // that allows us to move the camera around the scene left and right
+
+  const [ismObile, setIsMobile] = useState(false);
+
+  // we use the useEffect hook to check if the user is on a mobile device
+  useEffect(() => {
+
+    // Add a media query to check if the user is on a mobile device
+    // Add an event listener for changes to the screen size
+    const mediaQuery = window.matchMedia('(max-width: 500px)');
+
+    // Set the isMobile state to true if the user is on a mobile device
+    setIsMobile(mediaQuery.matches);
+
+    // Define a callback function to handle changes to the media query
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
+    }
+
+    // Add the callback function as an event listener for changes to the media query
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+    // Remove the event listener when the component is unmounted
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+    }
+  }, [])
+
   return (
     <Canvas
       frameloop="demand"
@@ -62,7 +89,7 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Computers />
+        <Computers ismObile={ismObile} />
       </Suspense>
 
       <Preload all />
