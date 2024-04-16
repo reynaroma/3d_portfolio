@@ -1,10 +1,10 @@
-import React from 'react';
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
 import { services } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
+import { SectionWrapper } from '../hoc';
 
 const ServiceCard = ({ index, title, icon }) => {
   return (
@@ -64,4 +64,10 @@ const About = () => {
   )
 }
 
-export default About
+// how to use HOC
+// export default SectionWrapper(About, "about")
+// Wrap export default about with SectionWrapper
+// First you pass the component then the id of the section
+// later on we're gonna wrap all the sections
+// with the SectionWrapper HOC
+export default SectionWrapper(About, "about")
