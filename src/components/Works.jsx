@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Tilt } from 'react-tilt';
 import { motion, spring } from 'framer-motion';
@@ -31,8 +32,8 @@ const ProjectCard = ({ index, name, description,
 
           <div className='absolute inset-0 flex
           justify-end m-3 card-img_hover'>
-            <div onClick={() => window.open
-              (source_code_link, "_blank")}
+            <div
+              onClick={() => window.open(source_code_link, "_blank")}
               className='black-gradient w-10 h-10
               rounded-full flex justify-center items-center
               cursor-pointer'
@@ -43,8 +44,24 @@ const ProjectCard = ({ index, name, description,
                 className='w-1/2 h-1/2 object-contain'
               />
             </div>
-
           </div>
+        </div>
+
+        <div className='mt-5'>
+          <h3 className='text-white font-bold
+           text-[24px]'>{name}</h3>
+          <p className='mt-2 text-secondary
+          text-[14px]'>{description}</p>
+        </div>
+        <div className='mt-4 flex flex-wrap gap-2'>
+          {tags.map((tag) => (
+            <p
+              key={tag.name}
+              className={`text-[14px] ${tag.color}`}
+            >
+              #{tag.name}
+            </p>
+          ))}
         </div>
       </Tilt>
     </motion.div>
@@ -80,7 +97,7 @@ const Works = () => {
           <ProjectCard
             key={`project-${index}`}
             index={index}
-            {...project}
+            {...project} // Spread operator to pass all the properties of the project object
           />
         ))}
       </div>
