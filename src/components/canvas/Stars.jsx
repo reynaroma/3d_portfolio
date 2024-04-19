@@ -9,6 +9,8 @@ const Stars = (props) => {
   // create sphere of stars
   const sphere = random.inSphere(new Float32Array(5000), { radius: 1.2 });
 
+  // animate the stars
+  // useFrame is a hook that runs every frame
   useFrame((state, delta) => {
     ref.current.rotation.x -= delta / 10;
     ref.current.rotation.y -= delta / 15;
@@ -21,7 +23,8 @@ const Stars = (props) => {
         positions={sphere}
         stride={3}
         frustumCulled
-        {...props}>
+        {...props} // pass the props to the Points component
+      >
         <PointMaterial
           transparent
           color="#f272c8" // color of the stars
