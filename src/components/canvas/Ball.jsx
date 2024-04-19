@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 import React, { Suspense } from 'react';
 // useTexture is a hook that loads an image texture
