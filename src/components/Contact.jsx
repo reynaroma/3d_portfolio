@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser"; // so people can send me emails
@@ -7,25 +8,62 @@ import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
+const serviceId = import.meta.env.VITE_APP_EMAIL_JS_SERVICE_ID;
+const templateId = import.meta.env.VITE_APP_EMAIL_JS_TEMPLATE_ID;
+const userId = import.meta.env.VITE_APP_EMAIL_JS_USER_ID;
+
+
 const Contact = () => {
   // form ref
   const formRef = useRef();
   // form state
-  const [form, setform] = useState({
+  const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
   });
   // loading when sending email
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // handle form input change
   const handleChange = (e) => {
-
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value })
   }
   // handle form submission 
   const handleSubmit = (e) => {
+    // prevent the default form submission otherwise the page will refresh
+    e.preventDefault();
+    // set loading to true
+    setLoading(true);
+    // send email
+    emailjs.send(
+      serviceId,
+      templateId,
+      {
+        from_name: form.name,
+        to_name: "Reyna",
+        from_email: form.email,
+        to_email: "roma.reynamay@gmail.com",
+        message: form.message,
+      },
+      userId)
+      .then(() => {
+        // clear form
+        setLoading(false);
+        alert("Thank you. I will get back to you as soon as possible.");
 
+        // reset form
+        setForm({
+          name: "",
+          email: "",
+          message: "",
+        })
+      }, (error) => {
+        setLoading(false);
+        console.log(error);
+        alert("Something went wrong. Please try again.")
+      })
   }
 
   return (

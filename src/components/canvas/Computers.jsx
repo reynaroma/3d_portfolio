@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 
 /* eslint-disable no-unused-vars */
@@ -36,7 +37,7 @@ const Computers = ({ ismObile }) => {
         shadow-mapSize-width={1024}
       />
       <primitive
-        object={computer.scene}
+        object={computer.scene ? computer.scene : null}
         scale={ismObile ? 0.7 : 0.75}
         position={ismObile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}

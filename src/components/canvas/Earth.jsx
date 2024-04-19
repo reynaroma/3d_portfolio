@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-unknown-property */
 import { Suspense } from "react";
 // anything 3D related should be wrapped in a Suspense component
 // to catch any errors that might occur during rendering
