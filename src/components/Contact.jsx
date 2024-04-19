@@ -59,26 +59,26 @@ const Contact = () => {
           </label>
           <label className="flex flex-col">
             <span className="text-white 
-            font-medium mb-4">Your Name</span>
+            font-medium mb-4">Your Email</span>
             <input
-              type="text"
-              name="name"
-              value={form.name}
+              type="email"
+              name="email"
+              value={form.email}
               onChange={handleChange}
-              placeholder="What's your name?"
+              placeholder="What's your Email?"
               className="bg-tertiary py-4 px-6
               placeholder:text-secondary text-white
               rounded-lg outline-none border-none font-medium"
             />
           </label>          <label className="flex flex-col">
             <span className="text-white 
-            font-medium mb-4">Your Name</span>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
+            font-medium mb-4">Your Message</span>
+            <textarea
+              rows="7"
+              name="message"
+              value={form.message}
               onChange={handleChange}
-              placeholder="What's your name?"
+              placeholder="What do you want to say?"
               className="bg-tertiary py-4 px-6
               placeholder:text-secondary text-white
               rounded-lg outline-none border-none font-medium"
