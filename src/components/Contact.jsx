@@ -8,10 +8,16 @@ import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
+<<<<<<< HEAD
 const serviceId = import.meta.env.VITE_APP_EMAIL_JS_SERVICE_ID;
 const templateId = import.meta.env.VITE_APP_EMAIL_JS_TEMPLATE_ID;
 const userId = import.meta.env.VITE_APP_EMAIL_JS_USER_ID;
 
+=======
+const serviceId = process.env.VITE_APP_EMAILJS_SERVICE_ID;
+const templateId = process.env.VITE_APP_EMAILJS_TEMPLATE_ID;
+const userId = process.env.VITE_APP_EMAILJS_USER_ID;
+>>>>>>> e1c0b3fa69f1f50370e25b6dc221718c51cce642
 
 const Contact = () => {
   // form ref
@@ -26,12 +32,20 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
 
   // handle form input change
+  // keypress event
   const handleChange = (e) => {
+<<<<<<< HEAD
     const { name, value } = e.target;
+=======
+    // extract name and value from the event target
+    const { name, value } = e.target;
+    // update the form state with the new value
+>>>>>>> e1c0b3fa69f1f50370e25b6dc221718c51cce642
     setForm({ ...form, [name]: value })
   }
   // handle form submission 
   const handleSubmit = (e) => {
+<<<<<<< HEAD
     // prevent the default form submission otherwise the page will refresh
     e.preventDefault();
     // set loading to true
@@ -54,6 +68,29 @@ const Contact = () => {
         alert("Thank you. I will get back to you as soon as possible.");
 
         // reset form
+=======
+    // prevent the default form submission otherwise the page will reload/refresh it
+    e.preventDefault();
+    setLoading(true);
+
+    // send email
+    emailjs.send(
+      serviceId,
+      templateId,
+      {
+        from_name: form.name,
+        to_name: "Reyna May",
+        from_email: form.email,
+        to_email: "roma.reynamay@gmail.com",
+        message: form.message,
+      },
+      userId)
+      .then(() => {
+        setLoading(false);
+        alert("Thank you. I will get back to you as soon as possible.")
+
+        // reset the form
+>>>>>>> e1c0b3fa69f1f50370e25b6dc221718c51cce642
         setForm({
           name: "",
           email: "",
@@ -62,7 +99,11 @@ const Contact = () => {
       }, (error) => {
         setLoading(false);
         console.log(error);
+<<<<<<< HEAD
         alert("Something went wrong. Please try again.")
+=======
+        alert("Something went wrong.");
+>>>>>>> e1c0b3fa69f1f50370e25b6dc221718c51cce642
       })
   }
 
