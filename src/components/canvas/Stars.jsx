@@ -9,9 +9,10 @@ const Stars = (props) => {
   // create sphere of stars
   const sphere = random.inSphere(new Float32Array(5000), { radius: 1.2 });
 
-  // animate the stars
+  // animate the stars to rotate them
   // useFrame is a hook that runs every frame
   useFrame((state, delta) => {
+    // rotate the stars
     ref.current.rotation.x -= delta / 10;
     ref.current.rotation.y -= delta / 15;
   })
@@ -19,17 +20,17 @@ const Stars = (props) => {
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
       <Points
-        ref={ref}
-        positions={sphere}
-        stride={3}
-        frustumCulled
+        ref={ref} // assign the ref to the Points component
+        positions={sphere} // positions of the stars
+        stride={3} // 3 values per point
+        frustumCulled // don't draw if the stars are not in the view
         {...props} // pass the props to the Points component
       >
         <PointMaterial
           transparent
           color="#f272c8" // color of the stars
           size={0.002} // size of the stars
-          sizeAttenuation={true}
+          sizeAttenuation={true} // make the stars smaller as they move away
           depthWrite={false}
         />
       </Points>
