@@ -91,6 +91,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your name?"
+              autoComplete="name"
               className="bg-tertiary py-4 px-6
               placeholder:text-secondary text-white
               rounded-lg outline-none border-none font-medium"
@@ -105,6 +106,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your Email?"
+              autoComplete="email"
               className="bg-tertiary py-4 px-6
               placeholder:text-secondary text-white
               rounded-lg outline-none border-none font-medium"
