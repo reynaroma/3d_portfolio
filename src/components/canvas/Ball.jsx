@@ -48,7 +48,6 @@ const Ball = (props) => {
 const BallCanvas = ({ icon }) => {
   return (
     <Canvas
-      requestAnimationFrame
       dpr={[1, 2]}
       gl={{ preserveDrawingBuffer: true }}
     >
