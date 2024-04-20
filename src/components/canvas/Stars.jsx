@@ -8,7 +8,8 @@ const Stars = (props) => {
   // create a ref to the Points component
   const ref = useRef();
   // create sphere of stars
-  const sphere = random.inSphere(new Float32Array(5000), { radius: 1.2 });
+  const sphere = random.inSphere(new Float32Array(1000), { radius: 1.2 });
+  console.log(sphere);
 
   // animate the stars to rotate them
   // useFrame is a hook that runs every frame
